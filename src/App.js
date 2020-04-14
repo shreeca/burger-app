@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
+import Layout from './components/Layout/Layout';
+import BurgerBuilder from "./components/containers/BurgerBuilder/BurgerBuilder";
 
 
-function App() {
-  return (
-    <div>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <div>
+                {/*// Wrapping with layout file*/}
+                <Layout>
+                    <p>
+                        <BurgerBuilder/>
+                    </p>
+                </Layout>
+            </div>
+        );
+    }
 }
 
 export default App;
