@@ -4,6 +4,7 @@
 
 import React from 'react';
 import Aux from '../../hoc/Aux';
+import classes from './Layout.css';
 
 // Adding Layout
 const layout = ( props ) => (
@@ -11,7 +12,8 @@ const layout = ( props ) => (
      <Aux>
        {/*//Adding Nav Bar*/}
       <div>Toolbar, SideDrawer, Backdrop</div>
-      <main>
+      <main className={classes.Content}>
+          {/*//Adding the properties from other component*/}
       {props.children}
       </main>
      </Aux>

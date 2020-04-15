@@ -9,9 +9,7 @@ class App extends Component {
             <div>
                 {/*// Wrapping with layout file*/}
                 <Layout>
-                    <p>
                         <BurgerBuilder/>
-                    </p>
                 </Layout>
             </div>
         );
