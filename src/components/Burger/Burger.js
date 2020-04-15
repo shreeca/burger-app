@@ -4,19 +4,34 @@ import classes from './Burger.css';
 
 const Burger = (props) => {
 
-    //Adding state property
+    //sate
+  // Converting array to a string
+    let transformedIngredients = Object.keys (props.ingredients)
+        .map(igKey => {
+            return [...Array(props.ingredients[igKey])].map((_, i)=>{
+               return <BurgerIngredients key={igKey + i} type = {igKey}/>;
+            });
+        })
 
+    // Reducing all the added array to an empty array
+    .reduce((arr, el)=>{
+        return arr.concat(el)
+    },[]);
 
-    return(
-        <div className = {classes.Burger} >
-        <BurgerIngredients type ="bread-top"/>
-        <BurgerIngredients type = "cheese"/>
-        <BurgerIngredients type = "meat"/>
-        <BurgerIngredients type = "cheese"/>
-        <BurgerIngredients type = "salad"/>
-        <BurgerIngredients type = "bread-bottom"/>
-    </div>
+    //check the code ok
+    if (transformedIngredients.length === 0){
+         transformedIngredients = <p>Please add the ingredients</p>
+    }
+        console.log(transformedIngredients);
+
+    //Adding burger
+    return (
+        <div className={classes.Burger}>
+            <BurgerIngredients type="bread-top"/>
+            {transformedIngredients}
+            <BurgerIngredients type="bread-bottom"/>
+        </div>
     );
-};
+}
 
 export default Burger;
