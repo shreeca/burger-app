@@ -1,6 +1,7 @@
 //(Order Summary) Displaying, list of items. Confirm buttons
 import React from 'react';
 import Aux from '../../../hoc/Aux';
+import Button from "../../UI/Button/Button";
 
 const OrderSummary = (props) => {
 
@@ -8,7 +9,7 @@ const OrderSummary = (props) => {
     const ingredientsSummary = Object.keys(props.ingredients)
         .map(igKey => {
             return (
-            <li>
+            <li key = {igKey}>
                 <span style = {{textTransform: 'capitalize'}}>{igKey}</span>
             :{props.ingredients[igKey]}
             </li>);
@@ -21,7 +22,10 @@ const OrderSummary = (props) => {
             <ul>
                 {ingredientsSummary}
             </ul>
+            <p><strong>Total Price: {props.price.toFixed(2)}</strong></p>
             <p>Continue to Checkout?</p>
+            <Button btnType ="Danger" clicked ={props.purchaseCanceled}>CANCEL</Button>
+            <Button btnType = "Success" clicked = {props.purchaseContinued}>CONTINUE</Button>
         </Aux>
     );
 }
