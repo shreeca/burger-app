@@ -1,5 +1,4 @@
 //Aux function
 const aux = (props) => props.children;
 
-export default aux ;
-
+export default aux;

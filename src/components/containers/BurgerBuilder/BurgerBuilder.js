@@ -63,23 +63,6 @@ class BurgerBuilder extends Component {
         this.updatePurchaseState(updatedIngredients);
     }
 
-    //Order now.(purchase method)
-
-    purchaseHandler = ()=>{
-        this.setState({purchasing: true});
-    }
-    //Canceling the purchase order on click
-    purchaseCancelHandler = () =>{
-        this.setState({purchasing:false});
-    }
-
-    //for button continue
-    purchaseContinuedHandler = () => {
-        alert('You continue!');
-    }
-
-
-
     deleteIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
         if (oldCount <= 0){
@@ -96,6 +79,22 @@ class BurgerBuilder extends Component {
         const newPrice = oldPrice - priceDeduction;
         this.setState({totalPrice : newPrice, ingredients: updatedIngredients})
         this.updatePurchaseState(updatedIngredients);
+    }
+
+
+    //Order now.(purchase method)
+
+    purchaseHandler = ()=>{
+        this.setState({purchasing: true});
+    }
+    //Canceling the purchase order on click
+    purchaseCancelHandler = () =>{
+        this.setState({purchasing:false});
+    }
+
+    //for button continue
+    purchaseContinuedHandler = () => {
+        alert('You continue!');
     }
 
 
