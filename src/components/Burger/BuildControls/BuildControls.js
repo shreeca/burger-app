@@ -22,17 +22,17 @@ const BuildControls = (props) => (
         {/*// wrapping build control*/}
         {controls.map(ctrl => (
             <BuildControl
-                key ={ctrl.label}
-                label = {ctrl.label}
+                key={ctrl.label}
+                label={ctrl.label}
                 added={() => props.ingredientAdded(ctrl.type)}
-                deleted = {() => props.ingredientsDeleted(ctrl.type)}
-                disabled = {props.disabled[ctrl.type]}
-            />
+                removed={() => props.ingredientRemoved(ctrl.type)}
+                disabled={props.disabled[ctrl.type]} />
         ))}
         {/*Adding purchase button*/}
-        <button className={classes.OrderButton}
-        disabled={!props.purchasable}
-        onClick = {props.ordered}>ORDER NOW</button>
+        <button
+            className={classes.OrderButton}
+            disabled={!props.purchasable}
+            onClick={props.ordered}>ORDER NOW</button>
     </div>
 
     );

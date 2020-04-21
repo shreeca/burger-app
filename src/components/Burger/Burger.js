@@ -14,13 +14,13 @@ const Burger = (props) => {
         })
 
     // Reducing all the added array to an empty array
-    .reduce((arr, el)=>{
+    .reduce ((arr, el) => {
         return arr.concat(el)
     },[]);
 
     //check the code ok
     if (transformedIngredients.length === 0){
-         transformedIngredients = <p>Please add the ingredients</p>
+         transformedIngredients = <p>Please add the ingredients!</p>
     }
         console.log(transformedIngredients);
 

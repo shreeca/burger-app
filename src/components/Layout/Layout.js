@@ -10,7 +10,7 @@ import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
 
 // Adding Layout
 class Layout extends Component {
-    //Adding Side drawer action
+    //Adding Side drawer action (contains if side drawer is visible or not)
     state = {
         showSideDrawer: false
     }
@@ -30,8 +30,12 @@ class Layout extends Component {
             //To avoid wrapping up in div, adding Aux (higher order component)
             <Aux>
                 {/*//Adding Nav Bar*/}
-                <Toolbar/>
-                <SideDrawer/>
+                <Toolbar drawerToggleCliked = {this.sideDrawerToggleHandler}/>
+
+                <SideDrawer
+                open = {this.state.showSideDrawer}
+                closed = {this.sideDrawerClosedHandler}/>
+
                 <main className={classes.Content}>
                     {/*//Adding the properties from other component*/}
                     {this.props.children}
