@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Layout from './components/Layout/Layout';
 import BurgerBuilder from "./components/containers/BurgerBuilder/BurgerBuilder";
+import Modal from "./components/UI/Modal/Modal";
 
 
 class App extends Component {
@@ -11,6 +12,12 @@ class App extends Component {
                 <Layout>
                         <BurgerBuilder/>
                 </Layout>
+                <Modal>
+                    <div
+                        style={{color:'black'}}
+                    >
+                    </div>
+                </Modal>
             </div>
         );
     }

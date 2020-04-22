@@ -19,12 +19,14 @@ class Modal extends Component {
         return (
             <Aux>
                 {/*Show property is to display the layout/CSS*/}
-                <Backdrop show={this.props.show} clicked={this.props.modalClosed}/>
+                <Backdrop show={this.props.show}
+                          clicked={this.props.modalClosed}/>
                 {/*//styling the div with shadow property*/}
                 <div
                     className={classes.Modal}
                      style={{
-                         transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
+                         transform: this.props.show ? 'translateY(0)' :
+                             'translateY(-100vh)',
                          opacity: this.props.show ? '1' : '0'
                      }}>
                     {this.props.children}

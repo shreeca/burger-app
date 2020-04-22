@@ -7,6 +7,7 @@ import Aux from '../../hoc/Aux';
 import classes from './Layout.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
+import Backdrop from "../UI/Backdrop/Backdrop";
 
 // Adding Layout
 class Layout extends Component {
@@ -20,9 +21,12 @@ class Layout extends Component {
     }
 
     sideDrawerToggleHandler = () => {
-        this.setState((prevState) => {
+        this.setState(prevState => {
             return {showSideDrawer: !prevState.showSideDrawer};
         });
+    }
+    backdropClickHandler = () => {
+        this.setState({ sideDrawerOpen: false })
     }
 
     render() {
@@ -31,7 +35,7 @@ class Layout extends Component {
             <Aux>
                 {/*//Adding Nav Bar*/}
                 <Toolbar drawerToggleCliked = {this.sideDrawerToggleHandler}/>
-
+                  <Backdrop/>
                 <SideDrawer
                 open = {this.state.showSideDrawer}
                 closed = {this.sideDrawerClosedHandler}/>

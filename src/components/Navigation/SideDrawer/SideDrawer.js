@@ -8,21 +8,27 @@ import Backdrop from "../../UI/Backdrop/Backdrop";
 import Aux from '../../../hoc/Aux';
 
 const SideDrawer = (props) => {
+    // Animation to slide in and out.
     let attachedClasses = [classes.SideDrawer, classes.Close];
     if (props.open) {
         attachedClasses = [classes.SideDrawer, classes.Open];
     }
     return (
-        <Aux>
+        <Aux >
             <Backdrop show={props.open} clicked={props.closed}/>
             <div className={attachedClasses.join(' ')}>
+                <div className={classes.SideDrawer}>
+                {/*Adding logo on side drawer*/}
                 <div className={classes.Logo}>
                     <Logo />
                 </div>
-                <nav>
+
+                <nav >
                     <NavigationItems />
                 </nav>
             </div>
+            </div>
+
         </Aux>
     );
 };
