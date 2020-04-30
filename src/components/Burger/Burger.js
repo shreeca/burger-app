@@ -5,7 +5,7 @@ import classes from './Burger.css';
 const Burger = (props) => {
 
     //sate
-  // Converting array to a string
+  // Turning our ingredients into an array of ingredients
     let transformedIngredients = Object.keys (props.ingredients)
         .map(igKey => {
             return [...Array(props.ingredients[igKey])].map((_, i)=>{

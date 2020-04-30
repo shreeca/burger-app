@@ -4,6 +4,7 @@ import Layout from './components/Layout/Layout';
 import BurgerBuilder from "./components/containers/BurgerBuilder/BurgerBuilder";
 import Modal from "./components/UI/Modal/Modal";
 import Checkout from "./components/containers/Checkout/Checkout";
+import Orders from "./components/containers/Orders/Orders";
 
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
                     {/*Routing*/}
 
                     <Route path = "/checkout" component = {Checkout} />
+                    <Route path = "/orders" component = {Orders}/>
                     <Route path = "/" exact component = {BurgerBuilder} />
 
                     </Switch>
