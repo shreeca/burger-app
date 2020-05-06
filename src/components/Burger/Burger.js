@@ -6,12 +6,12 @@ const Burger = (props) => {
 
     //sate
   // Turning our ingredients into an array of ingredients
-    let transformedIngredients = Object.keys (props.ingredients)
-        .map(igKey => {
-            return [...Array(props.ingredients[igKey])].map((_, i)=>{
-               return <BurgerIngredients key={igKey + i} type = {igKey}/>;
-            });
-        })
+    let transformedIngredients = Object.keys(props.ingredients)
+        .map( igKey => {
+            return [...Array( props.ingredients[igKey] )].map( ( _, i ) => {
+                return <BurgerIngredients key={igKey + i} type={igKey} />;
+            } );
+        } )
 
     // Reducing all the added array to an empty array
     .reduce ((arr, el) => {
@@ -19,19 +19,18 @@ const Burger = (props) => {
     },[]);
 
     //check the code ok
-    if (transformedIngredients.length === 0){
-         transformedIngredients = <p>Please add the ingredients!</p>
+    if (transformedIngredients.length === 0) {
+        transformedIngredients = <p>Please start adding ingredients!</p>;
     }
-        console.log(transformedIngredients);
-
     //Adding burger
     return (
         <div className={classes.Burger}>
-            <BurgerIngredients type="bread-top"/>
+            <BurgerIngredients type="bread-top" />
             {transformedIngredients}
-            <BurgerIngredients type="bread-bottom"/>
+            <BurgerIngredients type="bread-bottom" />
         </div>
     );
-}
+};
+
 
 export default Burger;
