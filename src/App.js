@@ -5,6 +5,7 @@ import BurgerBuilder from "./components/containers/BurgerBuilder/BurgerBuilder";
 import Modal from "./components/UI/Modal/Modal";
 import Checkout from "./components/containers/Checkout/Checkout";
 import Orders from "./components/containers/Orders/Orders";
+import Auth from "./components/containers/Auth/Auth";
 
 
 class App extends Component {
@@ -15,11 +16,10 @@ class App extends Component {
                 <Layout>
                     <Switch>
                     {/*Routing*/}
-
                     <Route path = "/checkout" component = {Checkout} />
                     <Route path = "/orders" component = {Orders}/>
+                    <Route path = "/auth" component = {Auth}/>
                     <Route path = "/" exact component = {BurgerBuilder} />
-
                     </Switch>
                 </Layout>
                 <Modal>

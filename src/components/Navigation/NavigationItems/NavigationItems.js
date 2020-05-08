@@ -7,6 +7,7 @@ const NavigationItems = () => (
         {/* Adding link to navigate item (routes) */}
         <NavigationItem link = "/" exact> Burger Builder</NavigationItem>
         <NavigationItem link = "/orders" > Orders </NavigationItem>
+        <NavigationItem link = "/auth" > Authenticate </NavigationItem>
     </ul>
 );
 
