@@ -2,16 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reducer from "./store/reducer";
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
 //provider from redux (property provided)
 import {Provider} from 'react-redux';
-import {createStore} from "redux";
+import {createStore, applyMiddleware, compose, combineReducers} from "redux";
+import thunk from 'redux-thunk';
+import orderReducer from './store/reducers/order';
+
+import burgerBuilderReducer from './store/reducers/burgerBuilder';
+
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const rootReducer = combineReducers({
+   burgerBuilder: burgerBuilderReducer,
+   order: orderReducer
+});
+
 
 //Creating store (to store all the state of the application)
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
+const store = createStore(rootReducer, composeEnhancers (
+    applyMiddleware(thunk)
+));
 
 ReactDOM.render(
   <React.StrictMode>
