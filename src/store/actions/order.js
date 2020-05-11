@@ -28,10 +28,10 @@ export const purchaseBurgerStart = () => {
     };
 };
 
-export const purchaseBurger = ( orderData ) => {
+export const purchaseBurger = ( orderData, token ) => {
     return dispatch => {
         dispatch( purchaseBurgerStart() );
-        axios.post( '/orders.json', orderData )
+        axios.post( '/orders.json?auth='+ token, orderData )
             .then( response => {
                 console.log( response.data );
                 dispatch( purchaseBurgerSuccess( response.data.name, orderData ) );
@@ -70,10 +70,10 @@ export const fetchOrdersStart = () => {
 
 // Adding Asynchronous action creator
 
-export const fetchOrders = () => {
-    return dispatch => {
+export const fetchOrders = (token) => { // passing token argument
+    return dispatch=> {
         dispatch(fetchOrdersStart());
-        axios.get( '/orders.json' )
+        axios.get( '/orders.json?auth='+ token)//here we are checking if orders section is authenticated and passing token agrument
             .then( res => {
                 const fetchedOrders = [];
                 for ( let key in res.data ) {
