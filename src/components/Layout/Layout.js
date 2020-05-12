@@ -3,6 +3,9 @@
 
 
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
+
 import Aux from '../../hoc/Aux';
 import classes from './Layout.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
@@ -34,7 +37,9 @@ class Layout extends Component {
             //To avoid wrapping up in div, adding Aux (higher order component)
             <Aux>
                 {/*//Adding Nav Bar*/}
-                <Toolbar drawerToggleCliked = {this.sideDrawerToggleHandler}/>
+                <Toolbar
+                    isAuth = {this.props.isAuthenticated}
+                    drawerToggleCliked = {this.sideDrawerToggleHandler}/>
                   <Backdrop/>
                 <SideDrawer
                 open = {this.state.showSideDrawer}
@@ -49,4 +54,10 @@ class Layout extends Component {
     }
 }
 
- export default Layout;
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    };
+}
+
+ export default connect(mapStateToProps)(Layout);

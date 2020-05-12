@@ -70,10 +70,11 @@ export const fetchOrdersStart = () => {
 
 // Adding Asynchronous action creator
 
-export const fetchOrders = (token) => { // passing token argument
-    return dispatch=> {
+export const fetchOrders = (token, userId) => {
+    return dispatch => {
         dispatch(fetchOrdersStart());
-        axios.get( '/orders.json?auth='+ token)//here we are checking if orders section is authenticated and passing token agrument
+        const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+        axios.get( '/orders.json' + queryParams)
             .then( res => {
                 const fetchedOrders = [];
                 for ( let key in res.data ) {
