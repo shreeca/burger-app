@@ -1,6 +1,7 @@
 //Adding Authentication (action creator)
-import * as actionTypes from './actionTypes';
 import axios from 'axios';
+
+import * as actionTypes from './actionTypes';
 
 // Adding Synchronous action creator
 export const authStart = () => {
@@ -13,7 +14,7 @@ export const authSuccess = (token, userId) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
-        userId : userId
+        userId: userId
     };
 };
 
@@ -25,20 +26,19 @@ export const authFail = (error) => {
 };
 
 export const logout = () => {
-    //To remove login data from local storage after logout
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('userId');
-  return {
+    return {
         type: actionTypes.AUTH_LOGOUT
-  };
+    };
 };
 
 //Auto Logout function 
-export const checkAuthTimeout =  (expirationTime) => {
+export const checkAuthTimeout = (expirationTime) => {
     return dispatch => {
-        setTimeout(()=>{
-            dispatch (logout());
+        setTimeout(() => {
+            dispatch(logout());
         }, expirationTime * 1000);
     };
 };
@@ -47,34 +47,32 @@ export const checkAuthTimeout =  (expirationTime) => {
 //using firebase Authentication
 export const auth = (email, password, isSignup) => {
     return dispatch => {
-       dispatch(authStart());
-       const authData ={
-           email: email,
-           password : password,
-           returnSecureToken : true
-       };
+        dispatch(authStart());
+        const authData = {
+            email: email,
+            password: password,
+            returnSecureToken: true
+        };
        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAd6vMb2XSIJ-QP5Y-o2cT_1-rhT1gGTwI';
        if(!isSignup){
            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAd6vMb2XSIJ-QP5Y-o2cT_1-rhT1gGTwI';
        }
-       axios.post(url, authData)
-           .then(response => {
-               console.log(response);
-               const expirationDate = new Date(new Date ().getTime() + response.data.expiresIn * 1000)
-               //To store login state in local storage.
-               localStorage.setItem('token', response.data.idToken);
-               localStorage.setItem('expirationDate', expirationDate);
-               localStorage.setItem('userId',response.data.localId);
-               dispatch(authSuccess(response.data.idToken, response.data.localId));
-               dispatch(checkAuthTimeout(response.data.expiresIn));
+        axios.post(url, authData)
+            .then(response => {
+                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                //To store login details in local store
+                localStorage.setItem('token', response.data.idToken);
+                localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('userId', response.data.localId);
+                dispatch(authSuccess(response.data.idToken, response.data.localId));
+                dispatch(checkAuthTimeout(response.data.expiresIn));
+               //check this part in video what you should do
            })
-           .catch(err => {
-               console.log(err);
-               dispatch(authFail(err.response.data.error));
-           })
+            .catch(err => {
+                dispatch(authFail(err.response.data.error));//ok so somewhere during the chain of calls you are saying where to redirect
+            });
     };
 };
-
 //Redirecting to page of authentication(if not logged in)
 
 export const setAuthRedirectPath = (path) => {

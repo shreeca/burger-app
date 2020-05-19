@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../reducers/utility';
+import { updateObject } from '../../shared/utility';
 
 const initialState = {
     ingredients: null,
@@ -33,7 +33,8 @@ const removeIngredient = (state, action) => {
     const updatedIngs = updateObject( state.ingredients, updatedIng );
     const updatedSt = {
         ingredients: updatedIngs,
-        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
+        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
+        building: true
     }
     return updateObject( state, updatedSt );
 };
@@ -51,7 +52,6 @@ const setIngredients = (state, action) => {
         building: false
     } );
 };
-
 const fetchIngredientsFailed = (state, action) => {
     return updateObject( state, { error: true } );
 };

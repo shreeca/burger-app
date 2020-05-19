@@ -27,7 +27,6 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount () {
-        console.log(this.props);
         this.props.onInitIngredients();
     }
 
@@ -50,9 +49,9 @@ class BurgerBuilder extends Component {
     //Order now.(purchase method)
 
     purchaseHandler = () => {
-        if(this.props.isAuthenticated) {
-            this.setState({purchasing: true});
-        } else{
+        if (this.props.isAuthenticated) {
+            this.setState( { purchasing: true } );
+        } else {
             this.props.onSetAuthRedirectPath('/checkout');
             this.props.history.push('/auth');
         }
@@ -83,7 +82,6 @@ class BurgerBuilder extends Component {
             burger = (
                 <Aux>
                     <Burger ingredients={this.props.ings} />
-                    {/* controlling order now button */}
                     <BuildControls
                         ingredientAdded={this.props.onIngredientAdded}
                         ingredientRemoved={this.props.onIngredientRemoved}
@@ -94,22 +92,22 @@ class BurgerBuilder extends Component {
                         price={this.props.price} />
                 </Aux>
             );
-    orderSummary = <OrderSummary
-        ingredients={this.props.ings}
-        price={this.props.price}
-        purchaseCancelled={this.purchaseCancelHandler}
-        purchaseContinued={this.purchaseContinueHandler} />;
-}
-// {salad: true, meat: false, ...}
-return (
-    <Aux>
-        <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-            {orderSummary}
-        </Modal>
-        {burger}
-    </Aux>
-);
-}
+            orderSummary = <OrderSummary
+                ingredients={this.props.ings}
+                price={this.props.price}
+                purchaseCancelled={this.purchaseCancelHandler}
+                purchaseContinued={this.purchaseContinueHandler} />;
+        }
+        // {salad: true, meat: false, ...}
+        return (
+            <Aux>
+                <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
+                    {orderSummary}
+                </Modal>
+                {burger}
+            </Aux>
+        );
+    }
 }
 
 const mapStateToProps = state => {
@@ -117,7 +115,7 @@ const mapStateToProps = state => {
         ings: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
         error: state.burgerBuilder.error,
-        isAuthenticated: state.auth.token !==null
+        isAuthenticated: state.auth.token !== null
     };
 }
 
